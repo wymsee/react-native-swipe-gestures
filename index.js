@@ -42,13 +42,13 @@ class GestureRecognizer extends Component {
       onPanResponderTerminate: responderEnd
     });
   }
-  
+
   componentDidUpdate(prevProps) {
     if (this.props.config !== prevProps.config) {
       this.swipeConfig = Object.assign(swipeConfig, this.props.config);
     }
   }
-  
+
   _handleShouldSetPanResponder(evt, gestureState) {
     return (
       evt.nativeEvent.touches.length === 1 &&
@@ -57,10 +57,7 @@ class GestureRecognizer extends Component {
   }
 
   _gestureIsClick(gestureState) {
-    return (
-      Math.abs(gestureState.dx) < swipeConfig.gestureIsClickThreshold &&
-      Math.abs(gestureState.dy) < swipeConfig.gestureIsClickThreshold
-    );
+    return Math.abs(gestureState.dx) < swipeConfig.gestureIsClickThreshold;
   }
 
   _handlePanResponderEnd(evt, gestureState) {
